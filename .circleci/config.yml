@@ -1,0 +1,26 @@
+version: 2.1
+
+jobs:
+  tweet:
+    docker:
+      - image: cimg/go:1.16.3
+    steps:
+      - checkout
+      - run:
+          name: go get
+          command: go get ./...
+      - run:
+          name: Run it !
+          command: |
+            go run main.go
+
+workflows:
+  nightly:
+    triggers:
+      - schedule:
+          cron: "0 12 * * *"
+          filters:
+            branches:
+              only: master
+    jobs:
+      - tweet
