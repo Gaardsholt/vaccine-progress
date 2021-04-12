@@ -29,3 +29,8 @@ workflows:
               only: master
     jobs:
       - tweet
+
+parameters:
+  run_manually:
+    type: boolean
+    default: false
