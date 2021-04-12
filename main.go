@@ -8,11 +8,11 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
+
+	"github.com/Gaardsholt/vaccine-progress/twitter"
 )
 
 func main() {
-	fmt.Println("hejsa")
-
 	res, err := http.Get("https://static.editorialdev.tv2a.dk/assets/2020/covid19/vaccinesDashboard.json")
 	if err != nil {
 		log.Fatal("Unable to get data")
@@ -31,7 +31,11 @@ func main() {
 		log.Fatalf("Unable to parse number to float: %v", err)
 	}
 
-	fmt.Println(createProgressBar(number))
+	progress := createProgressBar(number)
+
+	fmt.Println(progress)
+
+	twitter.Tweet(progress)
 }
 
 func createProgressBar(number float64) string {
