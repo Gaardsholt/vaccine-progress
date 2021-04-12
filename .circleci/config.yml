@@ -15,6 +15,11 @@ jobs:
             go run main.go
 
 workflows:
+  manual:
+    when: << pipeline.parameters.run_manually >>
+    jobs:
+      - tweet
+
   nightly:
     triggers:
       - schedule:
