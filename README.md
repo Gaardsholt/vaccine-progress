@@ -5,7 +5,7 @@ Dette er min lille Twitter "bot" der hver dag vil tweete hvor mange procent af D
 ## Data
 Jeg ville allerhelst have fået mit data direkte fra Statens Serum Institut, men åbenbart så er SSI ikke helt med på noderne endnu, så den eneste måde jeg kunne få data fra dem, var ved at downloade en zip hvor data så er i csv format. Siden kan ses [her](https://covid19.ssi.dk/overvagningsdata/download-fil-med-vaccinationsdata).
 
-Det kunne vi godt arbejde med, HVIS jeg så kunne downloade filen på en smart måde, men igen så har SSI været så smart at smide et lille random id på alle deres filer. F.eks.:
+Det kunne vi godt arbejde med, HVIS jeg så kunne downloade filen på en smart måde, men igen så har SSI været så smart at smide et lille random id på alle deres filer f.eks.:
 - [covid19-vaccinationsdata-15042021-1hi7](https://files.ssi.dk/covid19/vaccinationsdata/zipfil/covid19-vaccinationsdata-15042021-1hi7)
 - [covid19-vaccinationsdata-14042021-23uu](https://files.ssi.dk/covid19/vaccinationsdata/zipfil/covid19-vaccinationsdata-14042021-23uu)
 - [covid19-vaccinationsdata-13042021-2tal](https://files.ssi.dk/covid19/vaccinationsdata/zipfil/covid19-vaccinationsdata-13042021-2tal)
