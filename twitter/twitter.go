@@ -2,23 +2,33 @@ package twitter
 
 import (
 	"log"
-	"os"
 
 	"github.com/dghubble/go-twitter/twitter"
 	"github.com/dghubble/oauth1"
 )
 
-func Tweet(message string) {
+type tweeter struct {
+	ApiKey       string
+	ApiSecret    string
+	AccessToken  string
+	AccessSecret string
+}
+
+func New(apiKey string, apiSecret string, accessToken string, accessSecret string) *tweeter {
+	return &tweeter{ApiKey: apiKey, ApiSecret: apiSecret, AccessToken: accessToken, AccessSecret: accessSecret}
+}
+
+func (t *tweeter) Tweet(message string) {
 	var tweetMessage string
 
-	config := oauth1.NewConfig(os.Getenv("TWITTER_API_KEY"), os.Getenv("TWITTER_API_SECRET"))
-	token := oauth1.NewToken(os.Getenv("TWITTER_ACCESS_TOKEN"), os.Getenv("TWITTER_ACCESS_SECRET"))
+	config := oauth1.NewConfig(t.ApiKey, t.ApiSecret)
+	token := oauth1.NewToken(t.AccessToken, t.AccessSecret)
 	httpClient := config.Client(oauth1.NoContext, token)
 
 	// Twitter client
 	client := twitter.NewClient(httpClient)
 
-	// Home Timeline
+	// Get latest tweet
 	tweets, _, err := client.Timelines.UserTimeline(&twitter.UserTimelineParams{
 		ScreenName: "VaccineDk",
 		Count:      1,
@@ -35,8 +45,6 @@ func Tweet(message string) {
 			tweetMessage = message
 		}
 	}
-
-	// fmt.Println(tweets[0].Text)
 
 	// Send a Tweet
 	if tweetMessage != "" {
